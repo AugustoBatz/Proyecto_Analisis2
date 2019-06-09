@@ -5,9 +5,12 @@
  */
 package inventario_compras;
 
-import inventario_compras.ConexionDB.Conector;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import Proveedor.Interfaz_Crear_Proveedor_Controller;
+import Proveedor.Interfaz_Crear_Proveedor_View;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+
 
 
 /**
@@ -19,14 +22,19 @@ public class Inventario_Compras {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
-        Conector conexion = Conector.getDbCon();
-         ResultSet res=conexion.query("select * from Proveedor");
-        while(res.next())
-        {
-            
-            System.out.println(res.getString(1)+" - "+res.getString(2));
-        }
+    public static void main(String[] args) {
+        Interfaz_Crear_Proveedor_View interfaz = new Interfaz_Crear_Proveedor_View();
+        new Interfaz_Crear_Proveedor_Controller(interfaz);
+        interfaz.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+        interfaz.pack();
+        interfaz.setLocationRelativeTo(null);
+        interfaz.setVisible(true);
+
         
         // TODO code application logic here
     }

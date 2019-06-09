@@ -12,7 +12,7 @@ import java.sql.DriverManager;
  * @author sys515
  */
 public final class Conector {
-  public Connection conn;
+    public Connection conn;
     private Statement statement;
     public static Conector conexion;
     private Conector() {
