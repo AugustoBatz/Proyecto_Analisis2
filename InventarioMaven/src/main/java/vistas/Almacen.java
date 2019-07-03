@@ -10,7 +10,9 @@ import com.mycompany.inventariomaven.Presentacion;
 import com.mycompany.inventariomaven.Unidad;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 
 /**
@@ -22,15 +24,46 @@ public class Almacen extends javax.swing.JFrame {
     /**
      * Creates new form Categorias
      */
-    private ListModel modelo,modelo1,modelo2;
-    public Almacen(ListModel modelo,ListModel modelo1,ListModel modelo2) {
+    
+    public Almacen() {
         initComponents();
-        this.modelo=modelo;
-        this.modelo1=modelo1;
-        this.modelo2=modelo2;
-        this.ls_categoria.setModel(modelo);
-        this.ls_presentacion.setModel(modelo1);
-        this.ls_unidad_medida.setModel(modelo2);
+        
+    }
+
+    public JButton getBnt_cat() {
+        return bnt_cat;
+    }
+
+    public JButton getBnt_pres() {
+        return bnt_pres;
+    }
+
+    public JButton getBnt_uni() {
+        return bnt_uni;
+    }
+
+    public JTextField getCn() {
+        return cn;
+    }
+
+    public JTextField getPn() {
+        return pn;
+    }
+
+    public JTextField getUn() {
+        return un;
+    }   
+
+    public JList<Categoria> getLs_categoria() {
+        return ls_categoria;
+    }
+
+    public JList<Presentacion> getLs_presentacion() {
+        return ls_presentacion;
+    }
+
+    public JList<Unidad> getLs_unidad_medida() {
+        return ls_unidad_medida;
     }
  
     
@@ -57,8 +90,14 @@ public class Almacen extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         ls_unidad_medida = new javax.swing.JList<Unidad>();
         jLabel4 = new javax.swing.JLabel();
-        Crear = new javax.swing.JButton();
+        bnt_cat = new javax.swing.JButton();
         cn = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        bnt_pres = new javax.swing.JButton();
+        pn = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        un = new javax.swing.JTextField();
+        bnt_uni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +117,15 @@ public class Almacen extends javax.swing.JFrame {
 
         jLabel4.setText("Nueva Categoria");
 
-        Crear.setText("Crear");
+        bnt_cat.setText("Crear");
+
+        jLabel5.setText("Nueva Presentacion");
+
+        bnt_pres.setText("Crear");
+
+        jLabel6.setText("Nueva Unidad");
+
+        bnt_uni.setText("Crear");
 
         javax.swing.GroupLayout panel_mainLayout = new javax.swing.GroupLayout(panel_main);
         panel_main.setLayout(panel_mainLayout);
@@ -91,22 +138,33 @@ public class Almacen extends javax.swing.JFrame {
                         .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addGap(59, 59, 59)
                         .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(panel_mainLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3))
+                            .addGroup(panel_mainLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                                .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(un, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(bnt_uni))))
                         .addGap(73, 73, 73))
-                    .addGroup(panel_mainLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panel_mainLayout.createSequentialGroup()
-                        .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Crear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_mainLayout.createSequentialGroup()
+                        .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(bnt_cat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cn)))
+                        .addGap(47, 47, 47)
+                        .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(bnt_pres, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         panel_mainLayout.setVerticalGroup(
@@ -123,21 +181,32 @@ public class Almacen extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(9, 9, 9)
-                .addComponent(cn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Crear)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_mainLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(cn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_mainLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(un, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(panel_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bnt_cat)
+                    .addComponent(bnt_pres)
+                    .addComponent(bnt_uni))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel_main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panel_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,12 +222,16 @@ public class Almacen extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Crear;
+    private javax.swing.JButton bnt_cat;
+    private javax.swing.JButton bnt_pres;
+    private javax.swing.JButton bnt_uni;
     private javax.swing.JTextField cn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -166,5 +239,7 @@ public class Almacen extends javax.swing.JFrame {
     private javax.swing.JList<Presentacion> ls_presentacion;
     private javax.swing.JList<Unidad> ls_unidad_medida;
     private javax.swing.JPanel panel_main;
+    private javax.swing.JTextField pn;
+    private javax.swing.JTextField un;
     // End of variables declaration//GEN-END:variables
 }

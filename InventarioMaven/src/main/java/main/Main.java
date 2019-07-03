@@ -31,43 +31,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");//la unidad de persostencia decide que base de datos usar
-        ///EntityMagegerFactory fabrica de adminsitradores de entidades,
-        EntityManager em = emf.createEntityManager();//
-        //crear consultas
-        TypedQuery<Categoria> query_cat = em.createNamedQuery("Categoria.findAll", Categoria.class);
-       // TypedQuery<Complemento> query = em.createNamedQuery("Complemento.findByCostoandNombre", Complemento.class);
-        //query.setParameter("nombre", "Ron");
-       // query.setParameter("costo", 1.5f);
-        List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz
-        /*for (int i = 0; i < listaComplementos.size(); i++) {
-            System.out.println(listaComplementos.get(i));
-        }*/
-        TypedQuery<Presentacion> query_pres = em.createNamedQuery("Presentacion.findAll", Presentacion.class);
-        List<Presentacion> listaPresentacion = query_pres.getResultList();//List es una interfaz
-        TypedQuery<Unidad> query_unidad = em.createNamedQuery("Unidad.findAll", Unidad.class);
-        List<Unidad> listaUnidad = query_unidad.getResultList();//List es una interfaz
-        modelo_proxy_jl mc=new modelo_proxy_jl(listaCategoria);
-        modelo_proxy_jl mp=new modelo_proxy_jl(listaPresentacion);
-        modelo_proxy_jl mm=new modelo_proxy_jl(listaUnidad);
-        
-        Almacen view=new Almacen(mc,mp,mm);
-        view.setLocationRelativeTo(null);
-        view.setVisible(true);
-        Categoria c1 = new Categoria();
-      
-        c1.setCategoria("Alimentos");
-        
-        //c1.setCosto(1.5f);
-        CategoriaJpaController categoriaController = new CategoriaJpaController(em);
-        try {
-            categoriaController.create(c1);
-            
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            em.close();
-        }
+        Main_Frm frm=new Main_Frm();
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
         
     }
     
