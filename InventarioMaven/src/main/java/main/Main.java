@@ -18,8 +18,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import vistas.Almacen;
-import vistas.modelo_proxy_jl;
+import Almacen.Almacen;
+import Almacen.modelo_proxy_jl;
 
 /**
  *

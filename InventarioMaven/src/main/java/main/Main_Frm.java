@@ -7,8 +7,8 @@ package main;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import vistas.Almacen;
-import vistas.Almacen_Controller;
+import Almacen.Almacen;
+import Almacen.Almacen_Controller;
 
 /**
  *
