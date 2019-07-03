@@ -21,7 +21,7 @@ import javax.persistence.criteria.Root;
  */
 public class UnidadJpaController implements Serializable {
 
-    public UnidadJpaController(EntityManager emf) {
+    public UnidadJpaController(EntityManager em) {
         this.em = em;
     }
     private EntityManager em = null;

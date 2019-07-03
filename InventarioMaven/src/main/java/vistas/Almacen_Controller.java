@@ -125,9 +125,8 @@ public class Almacen_Controller implements ActionListener{
             
         }
         if(tipo == 3) {
-            
-            Unidad u = new Unidad();
             UnidadJpaController unidadcontroller=new UnidadJpaController(em);
+            Unidad u = new Unidad();
             u.setUnidad(view.getUn().getText());
             try {
                 unidadcontroller.create(u);
