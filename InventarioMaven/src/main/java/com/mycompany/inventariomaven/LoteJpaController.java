@@ -35,25 +35,7 @@ public class LoteJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            FacturaCompra facturaCompraid = lote.getFacturaCompraid();
-            if (facturaCompraid != null) {
-                facturaCompraid = em.getReference(facturaCompraid.getClass(), facturaCompraid.getId());
-                lote.setFacturaCompraid(facturaCompraid);
-            }
-            Producto productoid = lote.getProductoid();
-            if (productoid != null) {
-                productoid = em.getReference(productoid.getClass(), productoid.getId());
-                lote.setProductoid(productoid);
-            }
             em.persist(lote);
-            if (facturaCompraid != null) {
-                facturaCompraid.getLoteCollection().add(lote);
-                facturaCompraid = em.merge(facturaCompraid);
-            }
-            if (productoid != null) {
-                productoid.getLoteCollection().add(lote);
-                productoid = em.merge(productoid);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -67,36 +49,7 @@ public class LoteJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Lote persistentLote = em.find(Lote.class, lote.getId());
-            FacturaCompra facturaCompraidOld = persistentLote.getFacturaCompraid();
-            FacturaCompra facturaCompraidNew = lote.getFacturaCompraid();
-            Producto productoidOld = persistentLote.getProductoid();
-            Producto productoidNew = lote.getProductoid();
-            if (facturaCompraidNew != null) {
-                facturaCompraidNew = em.getReference(facturaCompraidNew.getClass(), facturaCompraidNew.getId());
-                lote.setFacturaCompraid(facturaCompraidNew);
-            }
-            if (productoidNew != null) {
-                productoidNew = em.getReference(productoidNew.getClass(), productoidNew.getId());
-                lote.setProductoid(productoidNew);
-            }
             lote = em.merge(lote);
-            if (facturaCompraidOld != null && !facturaCompraidOld.equals(facturaCompraidNew)) {
-                facturaCompraidOld.getLoteCollection().remove(lote);
-                facturaCompraidOld = em.merge(facturaCompraidOld);
-            }
-            if (facturaCompraidNew != null && !facturaCompraidNew.equals(facturaCompraidOld)) {
-                facturaCompraidNew.getLoteCollection().add(lote);
-                facturaCompraidNew = em.merge(facturaCompraidNew);
-            }
-            if (productoidOld != null && !productoidOld.equals(productoidNew)) {
-                productoidOld.getLoteCollection().remove(lote);
-                productoidOld = em.merge(productoidOld);
-            }
-            if (productoidNew != null && !productoidNew.equals(productoidOld)) {
-                productoidNew.getLoteCollection().add(lote);
-                productoidNew = em.merge(productoidNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -125,16 +78,6 @@ public class LoteJpaController implements Serializable {
                 lote.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The lote with id " + id + " no longer exists.", enfe);
-            }
-            FacturaCompra facturaCompraid = lote.getFacturaCompraid();
-            if (facturaCompraid != null) {
-                facturaCompraid.getLoteCollection().remove(lote);
-                facturaCompraid = em.merge(facturaCompraid);
-            }
-            Producto productoid = lote.getProductoid();
-            if (productoid != null) {
-                productoid.getLoteCollection().remove(lote);
-                productoid = em.merge(productoid);
             }
             em.remove(lote);
             em.getTransaction().commit();

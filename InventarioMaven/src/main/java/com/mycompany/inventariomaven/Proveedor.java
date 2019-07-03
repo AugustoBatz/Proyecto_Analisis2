@@ -54,9 +54,7 @@ public class Proveedor implements Serializable {
     private Integer numero;
     @Column(name = "Correo")
     private String correo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedorid")
-    private Collection<FacturaCompra> facturaCompraCollection;
-
+   
     public Proveedor() {
     }
 
@@ -120,13 +118,7 @@ public class Proveedor implements Serializable {
         this.correo = correo;
     }
 
-    public Collection<FacturaCompra> getFacturaCompraCollection() {
-        return facturaCompraCollection;
-    }
-
-    public void setFacturaCompraCollection(Collection<FacturaCompra> facturaCompraCollection) {
-        this.facturaCompraCollection = facturaCompraCollection;
-    }
+   
 
     @Override
     public int hashCode() {

@@ -5,18 +5,15 @@
  */
 package com.mycompany.inventariomaven;
 
-import com.mycompany.inventariomaven.exceptions.IllegalOrphanException;
 import com.mycompany.inventariomaven.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -34,29 +31,11 @@ public class ProveedorJpaController implements Serializable {
     }
 
     public void create(Proveedor proveedor) {
-        if (proveedor.getFacturaCompraCollection() == null) {
-            proveedor.setFacturaCompraCollection(new ArrayList<FacturaCompra>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<FacturaCompra> attachedFacturaCompraCollection = new ArrayList<FacturaCompra>();
-            for (FacturaCompra facturaCompraCollectionFacturaCompraToAttach : proveedor.getFacturaCompraCollection()) {
-                facturaCompraCollectionFacturaCompraToAttach = em.getReference(facturaCompraCollectionFacturaCompraToAttach.getClass(), facturaCompraCollectionFacturaCompraToAttach.getId());
-                attachedFacturaCompraCollection.add(facturaCompraCollectionFacturaCompraToAttach);
-            }
-            proveedor.setFacturaCompraCollection(attachedFacturaCompraCollection);
             em.persist(proveedor);
-            for (FacturaCompra facturaCompraCollectionFacturaCompra : proveedor.getFacturaCompraCollection()) {
-                Proveedor oldProveedoridOfFacturaCompraCollectionFacturaCompra = facturaCompraCollectionFacturaCompra.getProveedorid();
-                facturaCompraCollectionFacturaCompra.setProveedorid(proveedor);
-                facturaCompraCollectionFacturaCompra = em.merge(facturaCompraCollectionFacturaCompra);
-                if (oldProveedoridOfFacturaCompraCollectionFacturaCompra != null) {
-                    oldProveedoridOfFacturaCompraCollectionFacturaCompra.getFacturaCompraCollection().remove(facturaCompraCollectionFacturaCompra);
-                    oldProveedoridOfFacturaCompraCollectionFacturaCompra = em.merge(oldProveedoridOfFacturaCompraCollectionFacturaCompra);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -65,45 +44,12 @@ public class ProveedorJpaController implements Serializable {
         }
     }
 
-    public void edit(Proveedor proveedor) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Proveedor proveedor) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Proveedor persistentProveedor = em.find(Proveedor.class, proveedor.getId());
-            Collection<FacturaCompra> facturaCompraCollectionOld = persistentProveedor.getFacturaCompraCollection();
-            Collection<FacturaCompra> facturaCompraCollectionNew = proveedor.getFacturaCompraCollection();
-            List<String> illegalOrphanMessages = null;
-            for (FacturaCompra facturaCompraCollectionOldFacturaCompra : facturaCompraCollectionOld) {
-                if (!facturaCompraCollectionNew.contains(facturaCompraCollectionOldFacturaCompra)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain FacturaCompra " + facturaCompraCollectionOldFacturaCompra + " since its proveedorid field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Collection<FacturaCompra> attachedFacturaCompraCollectionNew = new ArrayList<FacturaCompra>();
-            for (FacturaCompra facturaCompraCollectionNewFacturaCompraToAttach : facturaCompraCollectionNew) {
-                facturaCompraCollectionNewFacturaCompraToAttach = em.getReference(facturaCompraCollectionNewFacturaCompraToAttach.getClass(), facturaCompraCollectionNewFacturaCompraToAttach.getId());
-                attachedFacturaCompraCollectionNew.add(facturaCompraCollectionNewFacturaCompraToAttach);
-            }
-            facturaCompraCollectionNew = attachedFacturaCompraCollectionNew;
-            proveedor.setFacturaCompraCollection(facturaCompraCollectionNew);
             proveedor = em.merge(proveedor);
-            for (FacturaCompra facturaCompraCollectionNewFacturaCompra : facturaCompraCollectionNew) {
-                if (!facturaCompraCollectionOld.contains(facturaCompraCollectionNewFacturaCompra)) {
-                    Proveedor oldProveedoridOfFacturaCompraCollectionNewFacturaCompra = facturaCompraCollectionNewFacturaCompra.getProveedorid();
-                    facturaCompraCollectionNewFacturaCompra.setProveedorid(proveedor);
-                    facturaCompraCollectionNewFacturaCompra = em.merge(facturaCompraCollectionNewFacturaCompra);
-                    if (oldProveedoridOfFacturaCompraCollectionNewFacturaCompra != null && !oldProveedoridOfFacturaCompraCollectionNewFacturaCompra.equals(proveedor)) {
-                        oldProveedoridOfFacturaCompraCollectionNewFacturaCompra.getFacturaCompraCollection().remove(facturaCompraCollectionNewFacturaCompra);
-                        oldProveedoridOfFacturaCompraCollectionNewFacturaCompra = em.merge(oldProveedoridOfFacturaCompraCollectionNewFacturaCompra);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -121,7 +67,7 @@ public class ProveedorJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -132,17 +78,6 @@ public class ProveedorJpaController implements Serializable {
                 proveedor.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The proveedor with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            Collection<FacturaCompra> facturaCompraCollectionOrphanCheck = proveedor.getFacturaCompraCollection();
-            for (FacturaCompra facturaCompraCollectionOrphanCheckFacturaCompra : facturaCompraCollectionOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Proveedor (" + proveedor + ") cannot be destroyed since the FacturaCompra " + facturaCompraCollectionOrphanCheckFacturaCompra + " in its facturaCompraCollection field has a non-nullable proveedorid field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(proveedor);
             em.getTransaction().commit();

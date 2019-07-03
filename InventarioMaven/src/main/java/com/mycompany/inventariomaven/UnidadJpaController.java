@@ -5,18 +5,15 @@
  */
 package com.mycompany.inventariomaven;
 
-import com.mycompany.inventariomaven.exceptions.IllegalOrphanException;
 import com.mycompany.inventariomaven.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -34,29 +31,11 @@ public class UnidadJpaController implements Serializable {
     }
 
     public void create(Unidad unidad) {
-        if (unidad.getProductoCollection() == null) {
-            unidad.setProductoCollection(new ArrayList<Producto>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Producto> attachedProductoCollection = new ArrayList<Producto>();
-            for (Producto productoCollectionProductoToAttach : unidad.getProductoCollection()) {
-                productoCollectionProductoToAttach = em.getReference(productoCollectionProductoToAttach.getClass(), productoCollectionProductoToAttach.getId());
-                attachedProductoCollection.add(productoCollectionProductoToAttach);
-            }
-            unidad.setProductoCollection(attachedProductoCollection);
             em.persist(unidad);
-            for (Producto productoCollectionProducto : unidad.getProductoCollection()) {
-                Unidad oldUnidadidOfProductoCollectionProducto = productoCollectionProducto.getUnidadid();
-                productoCollectionProducto.setUnidadid(unidad);
-                productoCollectionProducto = em.merge(productoCollectionProducto);
-                if (oldUnidadidOfProductoCollectionProducto != null) {
-                    oldUnidadidOfProductoCollectionProducto.getProductoCollection().remove(productoCollectionProducto);
-                    oldUnidadidOfProductoCollectionProducto = em.merge(oldUnidadidOfProductoCollectionProducto);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -65,45 +44,12 @@ public class UnidadJpaController implements Serializable {
         }
     }
 
-    public void edit(Unidad unidad) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Unidad unidad) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Unidad persistentUnidad = em.find(Unidad.class, unidad.getId());
-            Collection<Producto> productoCollectionOld = persistentUnidad.getProductoCollection();
-            Collection<Producto> productoCollectionNew = unidad.getProductoCollection();
-            List<String> illegalOrphanMessages = null;
-            for (Producto productoCollectionOldProducto : productoCollectionOld) {
-                if (!productoCollectionNew.contains(productoCollectionOldProducto)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Producto " + productoCollectionOldProducto + " since its unidadid field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Collection<Producto> attachedProductoCollectionNew = new ArrayList<Producto>();
-            for (Producto productoCollectionNewProductoToAttach : productoCollectionNew) {
-                productoCollectionNewProductoToAttach = em.getReference(productoCollectionNewProductoToAttach.getClass(), productoCollectionNewProductoToAttach.getId());
-                attachedProductoCollectionNew.add(productoCollectionNewProductoToAttach);
-            }
-            productoCollectionNew = attachedProductoCollectionNew;
-            unidad.setProductoCollection(productoCollectionNew);
             unidad = em.merge(unidad);
-            for (Producto productoCollectionNewProducto : productoCollectionNew) {
-                if (!productoCollectionOld.contains(productoCollectionNewProducto)) {
-                    Unidad oldUnidadidOfProductoCollectionNewProducto = productoCollectionNewProducto.getUnidadid();
-                    productoCollectionNewProducto.setUnidadid(unidad);
-                    productoCollectionNewProducto = em.merge(productoCollectionNewProducto);
-                    if (oldUnidadidOfProductoCollectionNewProducto != null && !oldUnidadidOfProductoCollectionNewProducto.equals(unidad)) {
-                        oldUnidadidOfProductoCollectionNewProducto.getProductoCollection().remove(productoCollectionNewProducto);
-                        oldUnidadidOfProductoCollectionNewProducto = em.merge(oldUnidadidOfProductoCollectionNewProducto);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -121,7 +67,7 @@ public class UnidadJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -132,17 +78,6 @@ public class UnidadJpaController implements Serializable {
                 unidad.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The unidad with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            Collection<Producto> productoCollectionOrphanCheck = unidad.getProductoCollection();
-            for (Producto productoCollectionOrphanCheckProducto : productoCollectionOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Unidad (" + unidad + ") cannot be destroyed since the Producto " + productoCollectionOrphanCheckProducto + " in its productoCollection field has a non-nullable unidadid field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(unidad);
             em.getTransaction().commit();

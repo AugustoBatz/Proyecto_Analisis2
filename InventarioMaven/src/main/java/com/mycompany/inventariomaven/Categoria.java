@@ -39,8 +39,7 @@ public class Categoria implements Serializable {
     private Integer id;
     @Column(name = "Categoria")
     private String categoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaid")
-    private Collection<Producto> productoCollection;
+    
 
     public Categoria() {
     }
@@ -65,13 +64,7 @@ public class Categoria implements Serializable {
         this.categoria = categoria;
     }
 
-    public Collection<Producto> getProductoCollection() {
-        return productoCollection;
-    }
-
-    public void setProductoCollection(Collection<Producto> productoCollection) {
-        this.productoCollection = productoCollection;
-    }
+    
 
     @Override
     public int hashCode() {

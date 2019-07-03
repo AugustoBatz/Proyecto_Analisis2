@@ -64,10 +64,6 @@ public class FacturaCompra implements Serializable {
     private Boolean anulado;
     @Column(name = "Cantidad_Prod")
     private Integer cantidadProd;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaCompraid")
-    private Collection<Lote> loteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaCompraid")
-    private Collection<RegistroCompra> registroCompraCollection;
     @JoinColumn(name = "Proveedor_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Proveedor proveedorid;
@@ -143,22 +139,7 @@ public class FacturaCompra implements Serializable {
         this.cantidadProd = cantidadProd;
     }
 
-    public Collection<Lote> getLoteCollection() {
-        return loteCollection;
-    }
-
-    public void setLoteCollection(Collection<Lote> loteCollection) {
-        this.loteCollection = loteCollection;
-    }
-
-    public Collection<RegistroCompra> getRegistroCompraCollection() {
-        return registroCompraCollection;
-    }
-
-    public void setRegistroCompraCollection(Collection<RegistroCompra> registroCompraCollection) {
-        this.registroCompraCollection = registroCompraCollection;
-    }
-
+    
     public Proveedor getProveedorid() {
         return proveedorid;
     }

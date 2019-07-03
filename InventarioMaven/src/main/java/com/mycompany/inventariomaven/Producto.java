@@ -53,8 +53,7 @@ public class Producto implements Serializable {
     private String medida;
     @Column(name = "StockMinimo")
     private Integer stockMinimo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoid")
-    private Collection<Lote> loteCollection;
+    
     @JoinColumn(name = "Categoria_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Categoria categoriaid;
@@ -67,8 +66,7 @@ public class Producto implements Serializable {
     @JoinColumn(name = "Marca_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Marca marcaid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoid")
-    private Collection<RegistroCompra> registroCompraCollection;
+    
 
     public Producto() {
     }
@@ -125,13 +123,7 @@ public class Producto implements Serializable {
         this.stockMinimo = stockMinimo;
     }
 
-    public Collection<Lote> getLoteCollection() {
-        return loteCollection;
-    }
-
-    public void setLoteCollection(Collection<Lote> loteCollection) {
-        this.loteCollection = loteCollection;
-    }
+    
 
     public Categoria getCategoriaid() {
         return categoriaid;
@@ -165,13 +157,7 @@ public class Producto implements Serializable {
         this.marcaid = marcaid;
     }
 
-    public Collection<RegistroCompra> getRegistroCompraCollection() {
-        return registroCompraCollection;
-    }
-
-    public void setRegistroCompraCollection(Collection<RegistroCompra> registroCompraCollection) {
-        this.registroCompraCollection = registroCompraCollection;
-    }
+    
 
     @Override
     public int hashCode() {

@@ -7,6 +7,8 @@ package main;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.CategoriaJpaController;
+import com.mycompany.inventariomaven.Producto;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import vistas.Almacen;
 
 /**
  *
@@ -41,9 +44,11 @@ public class Main {
             
             System.out.println(categoria);
         }
-        
+        Almacen view=new Almacen(listaCategoria);
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
         Categoria c1 = new Categoria();
-        
+      
         c1.setCategoria("Alimentos");
         //c1.setCosto(1.5f);
         CategoriaJpaController categoriaController = new CategoriaJpaController(em);

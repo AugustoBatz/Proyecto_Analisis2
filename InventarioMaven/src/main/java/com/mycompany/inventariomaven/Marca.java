@@ -39,8 +39,7 @@ public class Marca implements Serializable {
     private Integer id;
     @Column(name = "Marca")
     private String marca;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcaid")
-    private Collection<Producto> productoCollection;
+    
 
     public Marca() {
     }
@@ -65,14 +64,7 @@ public class Marca implements Serializable {
         this.marca = marca;
     }
 
-    public Collection<Producto> getProductoCollection() {
-        return productoCollection;
-    }
-
-    public void setProductoCollection(Collection<Producto> productoCollection) {
-        this.productoCollection = productoCollection;
-    }
-
+   
     @Override
     public int hashCode() {
         int hash = 0;

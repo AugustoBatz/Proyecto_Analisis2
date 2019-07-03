@@ -39,9 +39,7 @@ public class Presentacion implements Serializable {
     private Integer id;
     @Column(name = "Presentacion")
     private String presentacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentacionid")
-    private Collection<Producto> productoCollection;
-
+  
     public Presentacion() {
     }
 
@@ -65,13 +63,7 @@ public class Presentacion implements Serializable {
         this.presentacion = presentacion;
     }
 
-    public Collection<Producto> getProductoCollection() {
-        return productoCollection;
-    }
-
-    public void setProductoCollection(Collection<Producto> productoCollection) {
-        this.productoCollection = productoCollection;
-    }
+   
 
     @Override
     public int hashCode() {
