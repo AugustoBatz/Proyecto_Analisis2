@@ -87,7 +87,7 @@ public class Unidad implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.inventariomaven.Unidad[ id=" + id + " ]";
+        return ""+unidad;
     }
     
 }

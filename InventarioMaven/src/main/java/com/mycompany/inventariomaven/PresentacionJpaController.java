@@ -21,13 +21,13 @@ import javax.persistence.criteria.Root;
  */
 public class PresentacionJpaController implements Serializable {
 
-    public PresentacionJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PresentacionJpaController(EntityManager em) {
+        this.em= em;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManager em = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+       return this.em;
     }
 
     public void create(Presentacion presentacion) {
@@ -39,7 +39,7 @@ public class PresentacionJpaController implements Serializable {
             em.getTransaction().commit();
         } finally {
             if (em != null) {
-                em.close();
+                //em.close();
             }
         }
     }

@@ -88,7 +88,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.inventariomaven.Categoria[ id=" + id + " "+categoria+" ]";
+        return ""+categoria;
     }
     
 }

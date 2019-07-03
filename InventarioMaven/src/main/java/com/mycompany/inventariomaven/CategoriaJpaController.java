@@ -26,6 +26,7 @@ public class CategoriaJpaController implements Serializable {
     
     public CategoriaJpaController(EntityManager em) {
         this.em = em;
+        
        
         
     }

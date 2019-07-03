@@ -87,7 +87,7 @@ public class Presentacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.inventariomaven.Presentacion[ id=" + id + " ]";
+        return ""+presentacion;
     }
     
 }

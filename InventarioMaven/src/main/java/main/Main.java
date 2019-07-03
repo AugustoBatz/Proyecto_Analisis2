@@ -7,7 +7,9 @@ package main;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.CategoriaJpaController;
+import com.mycompany.inventariomaven.Presentacion;
 import com.mycompany.inventariomaven.Producto;
+import com.mycompany.inventariomaven.Unidad;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,6 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import vistas.Almacen;
+import vistas.modelo_proxy_jl;
 
 /**
  *
@@ -32,24 +35,29 @@ public class Main {
         ///EntityMagegerFactory fabrica de adminsitradores de entidades,
         EntityManager em = emf.createEntityManager();//
         //crear consultas
-        TypedQuery<Categoria> query = em.createNamedQuery("Categoria.findAll", Categoria.class);
+        TypedQuery<Categoria> query_cat = em.createNamedQuery("Categoria.findAll", Categoria.class);
        // TypedQuery<Complemento> query = em.createNamedQuery("Complemento.findByCostoandNombre", Complemento.class);
         //query.setParameter("nombre", "Ron");
        // query.setParameter("costo", 1.5f);
-        List<Categoria> listaCategoria = query.getResultList();//List es una interfaz
+        List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz
         /*for (int i = 0; i < listaComplementos.size(); i++) {
             System.out.println(listaComplementos.get(i));
         }*/
-        for (Categoria categoria : listaCategoria) {
-            
-            System.out.println(categoria);
-        }
-        Almacen view=new Almacen(listaCategoria);
+        TypedQuery<Presentacion> query_pres = em.createNamedQuery("Presentacion.findAll", Presentacion.class);
+        List<Presentacion> listaPresentacion = query_pres.getResultList();//List es una interfaz
+        TypedQuery<Unidad> query_unidad = em.createNamedQuery("Unidad.findAll", Unidad.class);
+        List<Unidad> listaUnidad = query_unidad.getResultList();//List es una interfaz
+        modelo_proxy_jl mc=new modelo_proxy_jl(listaCategoria);
+        modelo_proxy_jl mp=new modelo_proxy_jl(listaPresentacion);
+        modelo_proxy_jl mm=new modelo_proxy_jl(listaUnidad);
+        
+        Almacen view=new Almacen(mc,mp,mm);
         view.setLocationRelativeTo(null);
         view.setVisible(true);
         Categoria c1 = new Categoria();
       
         c1.setCategoria("Alimentos");
+        
         //c1.setCosto(1.5f);
         CategoriaJpaController categoriaController = new CategoriaJpaController(em);
         try {
