@@ -62,7 +62,7 @@ public class Almacen_Controller implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource()==view.getCn()){
+        if(ae.getSource()==view.getBnt_cat()){
             System.out.println("Presionando ");
             if(view.getCn().equals("")){
                 System.out.println("Vacio");
@@ -71,18 +71,18 @@ public class Almacen_Controller implements ActionListener{
                 create(1);
             }
         }
-        if(ae.getSource()==view.getPn()){
+        if(ae.getSource()==view.getBnt_pres()){
             System.out.println("Presionando ");
-            if(view.getCn().equals("")){
+            if(view.getPn().equals("")){
                 System.out.println("Vacio");
             }
             else{
                 create(2);
             }
         }
-        if(ae.getSource()==view.getUn()){
+        if(ae.getSource()==view.getBnt_uni()){
             System.out.println("Presionando ");
-            if(view.getCn().equals("")){
+            if(view.getUn().equals("")){
                 System.out.println("Vacio");
             }
             else{
