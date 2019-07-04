@@ -21,13 +21,13 @@ import javax.persistence.criteria.Root;
  */
 public class MarcaJpaController implements Serializable {
 
-    public MarcaJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public MarcaJpaController(EntityManager em) {
+        this.em = em;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManager em = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return this.em;
     }
 
     public void create(Marca marca) {
@@ -39,7 +39,7 @@ public class MarcaJpaController implements Serializable {
             em.getTransaction().commit();
         } finally {
             if (em != null) {
-                em.close();
+             //   em.close();
             }
         }
     }

@@ -21,13 +21,13 @@ import javax.persistence.criteria.Root;
  */
 public class ProductoJpaController implements Serializable {
 
-    public ProductoJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public ProductoJpaController(EntityManager em) {
+        this.em = em;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManager em = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return this.em;
     }
 
     public void create(Producto producto) {

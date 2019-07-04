@@ -87,7 +87,7 @@ public class Marca implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.inventariomaven.Marca[ id=" + id + " ]";
+        return ""+marca;
     }
     
 }

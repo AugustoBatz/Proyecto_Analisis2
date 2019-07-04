@@ -19,7 +19,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import Almacen.Almacen;
-import Almacen.modelo_proxy_jl;
+import Almacen.Modelo_proxy_jl;
 
 /**
  *

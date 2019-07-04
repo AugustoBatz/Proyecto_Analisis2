@@ -7,12 +7,15 @@ package Almacen;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.CategoriaJpaController;
+import com.mycompany.inventariomaven.Marca;
+import com.mycompany.inventariomaven.MarcaJpaController;
 import com.mycompany.inventariomaven.Presentacion;
 import com.mycompany.inventariomaven.PresentacionJpaController;
 import com.mycompany.inventariomaven.Unidad;
 import com.mycompany.inventariomaven.UnidadJpaController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,125 +29,73 @@ import main.Main;
  *
  * @author sys515
  */
-public class Almacen_Controller implements ActionListener{
+public class Almacen_Controller extends Almacen_BD implements ActionListener {
     private Almacen view;
-    public Almacen_Controller(Almacen view)
-    {
-        this.view=view;
-        setModels();
+    private List querylist = new ArrayList();
+
+    public Almacen_Controller(Almacen view) {
+        this.querylist = listas();
+        this.view = view;
+
         addActionListener();
+        setModels();
+
     }
-    public void addActionListener(){
+
+    public void addActionListener() {
         view.getBnt_cat().addActionListener(this);
         view.getBnt_pres().addActionListener(this);
         view.getBnt_uni().addActionListener(this);
+        view.getBtn_marca().addActionListener(this);
+
     }
-    public void setModels()
-    {
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
-        EntityManager em = emf.createEntityManager();//
-        TypedQuery<Categoria> query_cat = em.createNamedQuery("Categoria.findAll", Categoria.class);
-        List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz
-        TypedQuery<Presentacion> query_pres = em.createNamedQuery("Presentacion.findAll", Presentacion.class);
-        List<Presentacion> listaPresentacion = query_pres.getResultList();//List es una interfaz
-        TypedQuery<Unidad> query_unidad = em.createNamedQuery("Unidad.findAll", Unidad.class);
-        List<Unidad> listaUnidad = query_unidad.getResultList();//List es una interfaz
-        view.getLs_categoria().setModel(new modelo_proxy_jl(listaCategoria));
-        view.getLs_presentacion().setModel(new modelo_proxy_jl(listaPresentacion));
-        view.getLs_unidad_medida().setModel(new modelo_proxy_jl(listaUnidad));
-        //modelo_proxy_jl mc=new modelo_proxy_jl(listaCategoria);
-        
-        em.close();
-        emf.close();
-        
-        
-       
+
+    public void setModels() {
+
+        querylist.clear();
+        querylist = listas();
+        view.getLs_categoria().setModel(new Modelo_proxy_jl((List) querylist.get(0)));
+        view.getLs_presentacion().setModel(new Modelo_proxy_jl((List) querylist.get(1)));
+        view.getLs_unidad_medida().setModel(new Modelo_proxy_jl((List) querylist.get(2)));
+        view.getLs_marca().setModel(new Modelo_proxy_jl((List) querylist.get(3)));
     }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource()==view.getBnt_cat()){
-            System.out.println("Presionando ");
-            if(view.getCn().equals("")){
-                System.out.println("Vacio");
+
+        if (ae.getSource() == view.getBnt_cat()) {
+            if (view.getCn().equals("")) {
+            } else {
+                create(1, view.getCn().getText());
+
             }
-            else{
-                create(1);
+
+            setModels();
+        }
+        if (ae.getSource() == view.getBnt_pres()) {
+            if (view.getPn().equals("")) {
+            } else {
+                create(2, view.getPn().getText());
+
             }
         }
-        if(ae.getSource()==view.getBnt_pres()){
-            System.out.println("Presionando ");
-            if(view.getPn().equals("")){
-                System.out.println("Vacio");
-            }
-            else{
-                create(2);
+        if (ae.getSource() == view.getBnt_uni()) {
+            if (view.getUn().equals("")) {
+            } else {
+                create(3, view.getUn().getText());
+
             }
         }
-        if(ae.getSource()==view.getBnt_uni()){
-            System.out.println("Presionando ");
-            if(view.getUn().equals("")){
-                System.out.println("Vacio");
-            }
-            else{
-                create(3);
+        if (ae.getSource() == view.getBtn_marca()) {
+            if (view.getMn().equals("")) {
+            } else {
+                create(4, view.getMn().getText());
+
             }
         }
+
     }
-    private void create(int tipo){
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
-        EntityManager em = emf.createEntityManager();//
-        
-        if(tipo == 1) {
-            CategoriaJpaController categoriaController = new CategoriaJpaController(em);
-            Categoria c = new Categoria();
-            
-            c.setCategoria(view.getCn().getText());
-            try {
-                categoriaController.create(c);
-                System.out.println("Crea Categoria");
-            } catch (Exception ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                em.close();
-            }
-            
-        }
-        if(tipo == 2) {
-            PresentacionJpaController presetnacioncontroller=new PresentacionJpaController(em);
-            Presentacion p = new Presentacion();
-            
-            p.setPresentacion(view.getPn().getText());
-            try {
-                presetnacioncontroller.create(p);
-                System.out.println("Crea Categoria");
-            } catch (Exception ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                em.close();
-            }
-            
-        }
-        if(tipo == 3) {
-            UnidadJpaController unidadcontroller=new UnidadJpaController(em);
-            Unidad u = new Unidad();
-            u.setUnidad(view.getUn().getText());
-            try {
-                unidadcontroller.create(u);
-                System.out.println("Crea Categoria");
-            } catch (Exception ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                em.close();
-            }
-            
-        }
-        //em.close();
-        emf.close();
-        setModels();
-    
-        
-    }
-    
+
 }
 /*
  EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");//la unidad de persostencia decide que base de datos usar

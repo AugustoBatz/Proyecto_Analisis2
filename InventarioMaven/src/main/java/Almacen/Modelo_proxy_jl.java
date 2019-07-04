@@ -15,12 +15,12 @@ import javax.swing.event.ListDataListener;
  *
  * @author sys515
  */
-public class modelo_proxy_jl implements ListModel {
+public class Modelo_proxy_jl implements ListModel {
     
     
     private DefaultListModel realSubject=new DefaultListModel<>(); 
     
-    public modelo_proxy_jl(List ls){
+    public Modelo_proxy_jl(List ls){
         for (Object objeto: ls) {
             realSubject.addElement(objeto);
             

@@ -9,6 +9,6 @@ package Producto;
  *
  * @author sys515
  */
-public class Productos {
-    
+public interface strategy {
+    public Object realizarOperacion(String descripcion);
 }
