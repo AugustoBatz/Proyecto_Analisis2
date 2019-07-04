@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package com.mycompany.almacen;
 
 /**
  *
  * @author sys515
  */
-public interface strategy {
-    public Object realizarOperacion(String descripcion);
-}

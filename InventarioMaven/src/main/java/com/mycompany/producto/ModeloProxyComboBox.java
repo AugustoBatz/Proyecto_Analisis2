@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package com.mycompany.producto;
 
 import java.util.List;
 import javax.swing.ComboBoxModel;
@@ -14,10 +14,10 @@ import javax.swing.event.ListDataListener;
  *
  * @author sys515
  */
-public class Modelo_Proxy_cmb implements ComboBoxModel {
+public class ModeloProxyComboBox implements ComboBoxModel {
     DefaultComboBoxModel realSubject =new DefaultComboBoxModel<>(); 
     
-    public Modelo_Proxy_cmb(List ls){
+    public ModeloProxyComboBox(List ls){
         for (Object objeto: ls) {
             realSubject.addElement(objeto);
             

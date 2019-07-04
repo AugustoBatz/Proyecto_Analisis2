@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package com.mycompany.producto;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.Marca;
@@ -19,13 +19,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import main.Main;
+import com.mycompany.main.Main;
 
 /**
  *
  * @author sys515
  */
-public class ProductoBD {
+public class ProductoOperacionBD {
     private List querylist=new ArrayList();
     private int id_marca,id_prese,id_uni,id_cata;
     public List consultaOpciones(){
@@ -57,16 +57,16 @@ public class ProductoBD {
         p.setCodigo((String) data.get(1));
         p.setStockMinimo(Integer.valueOf((String) data.get(2)));
         
-        context = new Contexto(new Categoria_es());
+        context = new Contexto(new CategoriaEstrategia());
         p.setCategoriaid((Categoria) context.id((String) data.get(3)));
         
-        context = new Contexto(new Presentacion_es());
+        context = new Contexto(new PresentacionEstrategia());
         p.setPresentacionid((Presentacion) context.id((String) data.get(4)));
         
-        context = new Contexto(new Unidad_es());
+        context = new Contexto(new UnidadEstrategia());
         p.setUnidadid((Unidad) context.id((String) data.get(5)));
         
-        context = new Contexto( new Marca_es());
+        context = new Contexto( new MarcaEstrategia());
         p.setMarcaid((Marca) context.id((String) data.get(6)));
         
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
@@ -76,7 +76,7 @@ public class ProductoBD {
              productocontroller.create(p);
             
         } catch (Exception ex) {
-            Logger.getLogger(ProductoBD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductoOperacionBD.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
           //em.close();
         }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Almacen;
+package com.mycompany.almacen;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.CategoriaJpaController;
@@ -23,17 +23,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import main.Main;
+import com.mycompany.main.Main;
 
 /**
  *
  * @author sys515
  */
-public class Almacen_Controller extends Almacen_BD implements ActionListener {
+public class AlmacenController extends AlmacenOperacionesBD implements ActionListener {
     private Almacen view;
     private List querylist = new ArrayList();
 
-    public Almacen_Controller(Almacen view) {
+    public AlmacenController(Almacen view) {
         this.querylist = listas();
         this.view = view;
 
@@ -54,10 +54,10 @@ public class Almacen_Controller extends Almacen_BD implements ActionListener {
 
         querylist.clear();
         querylist = listas();
-        view.getLs_categoria().setModel(new Modelo_proxy_jl((List) querylist.get(0)));
-        view.getLs_presentacion().setModel(new Modelo_proxy_jl((List) querylist.get(1)));
-        view.getLs_unidad_medida().setModel(new Modelo_proxy_jl((List) querylist.get(2)));
-        view.getLs_marca().setModel(new Modelo_proxy_jl((List) querylist.get(3)));
+        view.getLs_categoria().setModel(new ModeloProxyJList((List) querylist.get(0)));
+        view.getLs_presentacion().setModel(new ModeloProxyJList((List) querylist.get(1)));
+        view.getLs_unidad_medida().setModel(new ModeloProxyJList((List) querylist.get(2)));
+        view.getLs_marca().setModel(new ModeloProxyJList((List) querylist.get(3)));
     }
 
     @Override

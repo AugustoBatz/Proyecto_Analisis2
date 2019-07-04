@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package com.mycompany.main;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import Almacen.Almacen;
-import Almacen.Almacen_Controller;
-import Producto.Producto_Controller;
-import Producto.Producto_frm;
+import com.mycompany.almacen.Almacen;
+import com.mycompany.almacen.AlmacenController;
+import com.mycompany.inventario.PruebaConsultaInner;
+import com.mycompany.producto.ProductoController;
+import com.mycompany.producto.ProductoFrm;
 
 /**
  *
  * @author sys515
  */
-public class Main_Frm extends javax.swing.JFrame {
+public class MainFrm extends javax.swing.JFrame {
 
     /**
      * Creates new form Main_Frm
      */
-    public Main_Frm() {
+    public MainFrm() {
         initComponents();
     }
 
@@ -36,6 +37,7 @@ public class Main_Frm extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Inventario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,16 +55,25 @@ public class Main_Frm extends javax.swing.JFrame {
             }
         });
 
+        Inventario.setText("Inventario");
+        Inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Inventario)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,7 +82,9 @@ public class Main_Frm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(Inventario)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,7 +92,7 @@ public class Main_Frm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Almacen view=new Almacen();
-        new Almacen_Controller(view);
+        new AlmacenController(view);
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
@@ -94,8 +107,8 @@ public class Main_Frm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Producto_frm view=new Producto_frm();
-        new Producto_Controller(view);
+        ProductoFrm view=new ProductoFrm();
+        new ProductoController(view);
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
@@ -109,11 +122,18 @@ public class Main_Frm extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioActionPerformed
+        PruebaConsultaInner pci=new PruebaConsultaInner();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InventarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Inventario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables

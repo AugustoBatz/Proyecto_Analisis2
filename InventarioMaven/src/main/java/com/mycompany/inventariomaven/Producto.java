@@ -181,7 +181,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.inventariomaven.Producto[ id=" + id + " ]";
+        return "Nombre: "+nombre+" Codigo: "+codigo+" Marca: "+getMarcaid().getMarca();
     }
     
 }

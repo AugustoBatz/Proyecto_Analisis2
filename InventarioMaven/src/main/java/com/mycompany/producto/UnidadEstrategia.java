@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package com.mycompany.producto;
 
 import com.mycompany.inventariomaven.Unidad;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
  *
  * @author sys515
  */
-public class Unidad_es implements strategy{
+public class UnidadEstrategia implements InterfazEstrategia{
 
     @Override
     public Object realizarOperacion(String descripcion) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Almacen;
+package com.mycompany.almacen;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.CategoriaJpaController;
@@ -21,13 +21,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import main.Main;
+import com.mycompany.main.Main;
 
 /**
  *
  * @author sys515
  */
-public class Almacen_BD {
+public class AlmacenOperacionesBD {
     private List querylist=new ArrayList();
     
     public List listas(){

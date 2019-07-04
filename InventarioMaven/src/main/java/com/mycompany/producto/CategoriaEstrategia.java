@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package com.mycompany.producto;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -15,9 +15,9 @@ import javax.persistence.TypedQuery;
  *
  * @author sys515
  */
-public class Categoria_es implements strategy{
+public class CategoriaEstrategia implements InterfazEstrategia{
 
-     public Categoria_es() {
+     public CategoriaEstrategia() {
     }
     @Override
     public Object realizarOperacion(String descripcion) {

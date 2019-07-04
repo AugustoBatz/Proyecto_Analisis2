@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package com.mycompany.main;
 
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.CategoriaJpaController;
@@ -18,8 +18,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import Almacen.Almacen;
-import Almacen.Modelo_proxy_jl;
+import com.mycompany.almacen.Almacen;
+import com.mycompany.almacen.ModeloProxyJList;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Main_Frm frm=new Main_Frm();
+        MainFrm frm=new MainFrm();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         

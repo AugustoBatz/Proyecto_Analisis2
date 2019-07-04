@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Almacen;
+package com.mycompany.almacen;
 
 import com.mycompany.inventariomaven.Categoria;
 import java.util.List;
@@ -15,12 +15,12 @@ import javax.swing.event.ListDataListener;
  *
  * @author sys515
  */
-public class Modelo_proxy_jl implements ListModel {
+public class ModeloProxyJList implements ListModel {
     
     
     private DefaultListModel realSubject=new DefaultListModel<>(); 
     
-    public Modelo_proxy_jl(List ls){
+    public ModeloProxyJList(List ls){
         for (Object objeto: ls) {
             realSubject.addElement(objeto);
             

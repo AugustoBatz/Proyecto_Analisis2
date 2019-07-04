@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package com.mycompany.producto;
 
-import Almacen.Modelo_proxy_jl;
+import com.mycompany.almacen.ModeloProxyJList;
 import com.mycompany.inventariomaven.Categoria;
 import com.mycompany.inventariomaven.Marca;
 import com.mycompany.inventariomaven.Presentacion;
@@ -25,11 +25,11 @@ import javax.persistence.TypedQuery;
  *
  * @author sys515
  */
-public class Producto_Controller extends ProductoBD implements  ActionListener{
-    private Producto_frm view;
+public class ProductoController extends ProductoOperacionBD implements  ActionListener{
+    private ProductoFrm view;
     private List querylist;
     private ArrayList<String> data=new ArrayList<String>();
-    public Producto_Controller(Producto_frm view){
+    public ProductoController(ProductoFrm view){
         this.view=view;
         this.querylist=consultaOpciones();
         llenarOpciones();
@@ -42,10 +42,10 @@ public class Producto_Controller extends ProductoBD implements  ActionListener{
         view.getCategoria().addActionListener(this);
     }
     private void llenarOpciones(){
-        view.getCategoria().setModel(new Modelo_Proxy_cmb((List) querylist.get(0)));
-        view.getPresentacion().setModel(new Modelo_Proxy_cmb((List) querylist.get(1)));
-        view.getUnidad().setModel(new Modelo_Proxy_cmb((List) querylist.get(2)));
-        view.getMarca().setModel(new Modelo_Proxy_cmb((List) querylist.get(3)));
+        view.getCategoria().setModel(new ModeloProxyComboBox((List) querylist.get(0)));
+        view.getPresentacion().setModel(new ModeloProxyComboBox((List) querylist.get(1)));
+        view.getUnidad().setModel(new ModeloProxyComboBox((List) querylist.get(2)));
+        view.getMarca().setModel(new ModeloProxyComboBox((List) querylist.get(3)));
         
     }
     
