@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crud;
+package Producto;
 
 /**
  *
  * @author sys515
  */
-public interface strategy {
-    public void operacionbd();
+public class Productos {
+    
 }
