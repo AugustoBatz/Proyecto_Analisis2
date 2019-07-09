@@ -20,7 +20,7 @@ public class FactoryBaseDeDatos {
     private EntityManagerFactory emf;
     private EntityManager em;    
     
-    public FactoryBaseDeDatos(){
+    private FactoryBaseDeDatos(){
         //nombre base de datos
         emf = Persistence.createEntityManagerFactory("restaurante");
         em = emf.createEntityManager();
