@@ -15,18 +15,14 @@ import java.util.List;
 public class InventarioFrmController extends InventarioOperacionesBD {
 
     private InventarioFrm view;
-    private List<String> nombresDeLasColumnas = new ArrayList<String>();
+   
 
     public InventarioFrmController(InventarioFrm view) {
         this.view = view;
-        nombresDeLasColumnas.add("Codigo");
-        nombresDeLasColumnas.add("Nombre");
-        nombresDeLasColumnas.add("Marca");
-        nombresDeLasColumnas.add("Presentacion");
-        nombresDeLasColumnas.add("Unidad");
-        nombresDeLasColumnas.add("Categoria");
-        ProxyTableModel model=new ProxyTableModel(nombresDeLasColumnas,listaProdcutos());
-        this.view.getTablaInventario().setModel(model);
+         RenderCellRojo renderer=new RenderCellRojo(0);
+        this.view.getTablaInventario().setDefaultRenderer(Object.class, renderer);
+        this.view.getTablaInventario().setModel(new ProxyTableModel(nombreDeColumnas(),listaProdcutos()));
+        
     }
     
 }

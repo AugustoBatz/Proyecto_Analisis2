@@ -5,6 +5,7 @@
  */
 package com.mycompany.inventario;
 
+import com.mycompany.inventariomaven.Producto;
 import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -16,12 +17,14 @@ import javax.swing.table.TableModel;
  */
 public class ProxyTableModel implements TableModel{
 
-    private List productos;
+    private List<Producto> productos;
     private DefaultTableModel realSubject = new DefaultTableModel();
     public ProxyTableModel(List nombres,List productos){
         nombresDeColumnas(nombres);
         this.productos=productos;
         agregarFila();
+        
+        
     }
     private void nombresDeColumnas(List nombres)
     {
@@ -32,15 +35,23 @@ public class ProxyTableModel implements TableModel{
     }
     private void agregarFila()
     {
-        Object[] datosFilas = new Object[productos.size()];
+        String[] datosFilas =new String[8];
         
-        int cont = 0;
-        for (Object objeto : productos) 
+       
+        for (Producto objeto : productos) 
         {
-            datosFilas[cont] = objeto;
-            cont++;
+            datosFilas[0] = objeto.getCodigo();
+            datosFilas[1] = objeto.getNombre();
+            datosFilas[2] = objeto.getMarcaid().getMarca();
+            datosFilas[3] = objeto.getPresentacionid().getPresentacion();
+            datosFilas[4] = objeto.getUnidadid().getUnidad();
+            datosFilas[5] = objeto.getCategoriaid().getCategoria();
+            datosFilas[6] = String.valueOf(objeto.getExistencia());
+            datosFilas[7] = String.valueOf(objeto.getStockMinimo());
+            realSubject.addRow(datosFilas);
+          
         }
-        realSubject.addRow(datosFilas);
+       
     }
     @Override
     public int getRowCount() {

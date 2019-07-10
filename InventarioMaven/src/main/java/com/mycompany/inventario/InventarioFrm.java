@@ -18,6 +18,7 @@ public class InventarioFrm extends javax.swing.JFrame {
      */
     public InventarioFrm() {
         initComponents();
+       
     }
 
     public JTable getTablaInventario() {

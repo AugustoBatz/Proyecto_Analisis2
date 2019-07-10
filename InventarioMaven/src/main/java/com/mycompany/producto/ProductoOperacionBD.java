@@ -72,7 +72,7 @@ public class ProductoOperacionBD implements InterfazCrearProducto{
         
         context = new Contexto( new MarcaEstrategia());
         p.setMarcaid((Marca) context.id((String) data.get(6)));
-        
+        p.setExistencia(0);
         
         ProductoJpaController productocontroller=new ProductoJpaController(conexion.getEntityManager());
         try {
