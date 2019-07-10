@@ -31,7 +31,7 @@ public class ProductoController extends ProductoOperacionBD implements  ActionLi
     private ArrayList<String> data=new ArrayList<String>();
     public ProductoController(ProductoFrm view){
         this.view=view;
-        this.querylist=consultaOpciones();
+        this.querylist=CaracteristicasDelProducto();
         llenarOpciones();
         addActionListener();
         System.out.println(view.getCategoria().getSelectedItem());
@@ -61,7 +61,7 @@ public class ProductoController extends ProductoOperacionBD implements  ActionLi
             data.add(String.valueOf(view.getPresentacion().getSelectedItem()));
             data.add(String.valueOf(view.getUnidad().getSelectedItem()));
             data.add(String.valueOf(view.getMarca().getSelectedItem()));
-            crearProducto(data);
+            CrearProducto(data);
         }
         if(ae.getSource()==view.getCategoria()){
             System.out.println(view.getCategoria().getSelectedItem());

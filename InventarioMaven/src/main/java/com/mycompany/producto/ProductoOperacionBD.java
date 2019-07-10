@@ -20,37 +20,41 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.main.Main;
+import factorybd.FactoryBaseDeDatos;
+import static factorybd.FactoryBaseDeDatos.getInstancia;
 
 /**
  *
  * @author sys515
  */
-public class ProductoOperacionBD {
+public class ProductoOperacionBD implements InterfazCrearProducto{
     private List querylist=new ArrayList();
-    private int id_marca,id_prese,id_uni,id_cata;
-    public List consultaOpciones(){
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
-        EntityManager em = emf.createEntityManager();//
-        TypedQuery<Categoria> query_cat = em.createNamedQuery("Categoria.findAll", Categoria.class);
+ 
+    private FactoryBaseDeDatos conexion= getInstancia();
+    
+    
+  
+    @Override
+    public List CaracteristicasDelProducto() {
+     
+        TypedQuery<Categoria> query_cat = conexion.getEntityManager().createNamedQuery("Categoria.findAll", Categoria.class);
         List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz
-        TypedQuery<Presentacion> query_pres = em.createNamedQuery("Presentacion.findAll", Presentacion.class);
+        TypedQuery<Presentacion> query_pres = conexion.getEntityManager().createNamedQuery("Presentacion.findAll", Presentacion.class);
         List<Presentacion> listaPresentacion = query_pres.getResultList();//List es una interfaz
-        TypedQuery<Unidad> query_unidad = em.createNamedQuery("Unidad.findAll", Unidad.class);
+        TypedQuery<Unidad> query_unidad = conexion.getEntityManager().createNamedQuery("Unidad.findAll", Unidad.class);
         List<Unidad> listaUnidad = query_unidad.getResultList();//List es una interfaz
-        TypedQuery<Marca> query_marca = em.createNamedQuery("Marca.findAll", Marca.class);
+        TypedQuery<Marca> query_marca = conexion.getEntityManager().createNamedQuery("Marca.findAll", Marca.class);
         List<Marca> listaMarca = query_marca.getResultList();//List es una interfaz
         querylist.add(listaCategoria);
         querylist.add(listaPresentacion);
         querylist.add(listaUnidad);
         querylist.add(listaMarca);
-        //modelo_proxy_jl mc=new modelo_proxy_jl(listaCategoria);
         
-        em.close();
-        emf.close();
         return querylist;
     }
-    
-    public void crearProducto(ArrayList data){
+
+    @Override
+    public void CrearProducto(ArrayList data) {
         Producto p=new Producto();
         Contexto context;
         p.setNombre((String) data.get(0));
@@ -69,24 +73,14 @@ public class ProductoOperacionBD {
         context = new Contexto( new MarcaEstrategia());
         p.setMarcaid((Marca) context.id((String) data.get(6)));
         
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
-        EntityManager em = emf.createEntityManager();//
-        ProductoJpaController productocontroller=new ProductoJpaController(em);
+        
+        ProductoJpaController productocontroller=new ProductoJpaController(conexion.getEntityManager());
         try {
              productocontroller.create(p);
             
         } catch (Exception ex) {
             Logger.getLogger(ProductoOperacionBD.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-          //em.close();
         }
-//         
-        
-        
-        
-        
-        
-        
-        emf.close();
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
