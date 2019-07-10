@@ -142,7 +142,7 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.inventariomaven.Proveedor[ id=" + id + " ]";
+        return nit+", "+nombreV+", "+representante;
     }
     
 }

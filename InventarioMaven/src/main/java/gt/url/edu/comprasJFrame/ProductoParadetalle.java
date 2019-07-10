@@ -7,6 +7,8 @@ package gt.url.edu.comprasJFrame;
 
 import gt.url.edu.factorybd.FactoryBaseDeDatos;
 import gt.url.edu.inventariomaven.Producto;
+import gt.url.edu.inventariomaven.Proveedor;
+import java.util.List;
 import javax.persistence.TypedQuery;
 
 /**
@@ -23,5 +25,14 @@ public class ProductoParadetalle implements InterfazLlenarDetalle{
         return query.getSingleResult();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List getListNit() {
+        TypedQuery<Proveedor> query = conexion.getEntityManager().createNamedQuery("Proveedor.findAll", Proveedor.class);
+        List<Proveedor> queryList=query.getResultList();
+        return queryList;
+    }
+
+   
     
 }

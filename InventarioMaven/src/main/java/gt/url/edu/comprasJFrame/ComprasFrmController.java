@@ -7,6 +7,7 @@ package gt.url.edu.comprasJFrame;
 
 import gt.url.edu.inventario.InventarioOperacionesBD;
 import gt.url.edu.inventariomaven.Producto;
+import gt.url.edu.producto.ModeloProxyComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +32,7 @@ public class ComprasFrmController extends InventarioOperacionesBD implements Act
         this.view=view;
         this.view.getComboProductos().setModel(new ProxyModelProductos(listProductos()));
         idProducto=getIdProducto(view.getComboProductos().getSelectedItem().toString());
+        view.getNit().setModel(new ModeloProxyComboBox(interfaz.getListNit()));
         addActionListener();
         modelo.addColumn("id");
         modelo.addColumn("Codigo");

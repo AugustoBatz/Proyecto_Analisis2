@@ -6,6 +6,7 @@
 package gt.url.edu.comprasJFrame;
 
 import gt.url.edu.inventariomaven.Producto;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,7 @@ import gt.url.edu.inventariomaven.Producto;
  */
 public interface InterfazLlenarDetalle {
     public Producto getProducto(String id);
+    public List getListNit();
+    
    
 }

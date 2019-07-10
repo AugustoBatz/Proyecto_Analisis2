@@ -21,13 +21,13 @@ import javax.persistence.criteria.Root;
  */
 public class ProveedorJpaController implements Serializable {
 
-    public ProveedorJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public ProveedorJpaController(EntityManager em) {
+        this.em = em;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManager em = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return this.em;
     }
 
     public void create(Proveedor proveedor) {
@@ -39,7 +39,7 @@ public class ProveedorJpaController implements Serializable {
             em.getTransaction().commit();
         } finally {
             if (em != null) {
-                em.close();
+             
             }
         }
     }
