@@ -23,6 +23,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.main.Main;
 import factorybd.FactoryBaseDeDatos;
+import static factorybd.FactoryBaseDeDatos.getInstancia;
 
 /**
  *
@@ -30,10 +31,11 @@ import factorybd.FactoryBaseDeDatos;
  */
 public class AlmacenOperacionesBD {
     private List querylist=new ArrayList();
-    private FactoryBaseDeDatos conexion;
+    private FactoryBaseDeDatos conexion= getInstancia();
+    
     public List listas(){
         
-        TypedQuery<Categoria> query_cat = conexion.getEntityManager().createNamedQuery("Categoria.findAll", Categoria.class);
+        TypedQuery<Categoria> query_cat = this.conexion.getEntityManager().createNamedQuery("Categoria.findAll", Categoria.class);
         List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz
         TypedQuery<Presentacion> query_pres = conexion.getEntityManager().createNamedQuery("Presentacion.findAll", Presentacion.class);
         List<Presentacion> listaPresentacion = query_pres.getResultList();//List es una interfaz
@@ -47,7 +49,7 @@ public class AlmacenOperacionesBD {
         querylist.add(listaUnidad);
         querylist.add(listaMarca);
         System.out.println("Query");
-        conexion.getEntityManager().close();
+        //conexion.getEntityManager().close();
        
         return querylist;
     }
@@ -55,7 +57,7 @@ public class AlmacenOperacionesBD {
     
         
         if(tipo == 1) {
-            CategoriaJpaController categoriaController = new CategoriaJpaController(conexion.getEntityManager());
+            CategoriaJpaController categoriaController = new CategoriaJpaController(this.conexion.getEntityManager());
             Categoria c = new Categoria();
             
             c.setCategoria(descripcion);
@@ -63,10 +65,7 @@ public class AlmacenOperacionesBD {
                 categoriaController.create(c);
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                conexion.getEntityManager().close();
-              
-            }
+            } 
             
         }
         if(tipo == 2) {
@@ -78,9 +77,6 @@ public class AlmacenOperacionesBD {
                 presetnacioncontroller.create(p);
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                conexion.getEntityManager().close();
-               
             }
             
         }
@@ -92,11 +88,8 @@ public class AlmacenOperacionesBD {
                 unidadcontroller.create(u);
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                conexion.getEntityManager().close();
            
             }
-            
         }
         if(tipo == 4) {
             MarcaJpaController marcacontroller=new MarcaJpaController(conexion.getEntityManager());
@@ -106,9 +99,6 @@ public class AlmacenOperacionesBD {
                 marcacontroller.create(m);
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                conexion.getEntityManager().close();
-                
             }
             
         }

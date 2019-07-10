@@ -17,12 +17,12 @@ import javax.persistence.TypedQuery;
  */
 public class FactoryBaseDeDatos {
     private static FactoryBaseDeDatos conexionDb;
-    private EntityManagerFactory emf;
-    private EntityManager em;    
+    private final EntityManagerFactory emf;
+    private final EntityManager em;    
     
     private FactoryBaseDeDatos(){
         //nombre base de datos
-        emf = Persistence.createEntityManagerFactory("restaurante");
+        emf = Persistence.createEntityManagerFactory("proyecto");
         em = emf.createEntityManager();
     }
     public static FactoryBaseDeDatos getInstancia() {

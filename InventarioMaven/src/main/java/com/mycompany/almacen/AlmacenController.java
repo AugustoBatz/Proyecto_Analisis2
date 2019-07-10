@@ -76,21 +76,21 @@ public class AlmacenController extends AlmacenOperacionesBD implements ActionLis
             if (view.getPn().equals("")) {
             } else {
                 create(2, view.getPn().getText());
-
+                setModels();
             }
         }
         if (ae.getSource() == view.getBnt_uni()) {
             if (view.getUn().equals("")) {
             } else {
                 create(3, view.getUn().getText());
-
+                setModels();
             }
         }
         if (ae.getSource() == view.getBtn_marca()) {
             if (view.getMn().equals("")) {
             } else {
                 create(4, view.getMn().getText());
-
+                setModels();
             }
         }
 
