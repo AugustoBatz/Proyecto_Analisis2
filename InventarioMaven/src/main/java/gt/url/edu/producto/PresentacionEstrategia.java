@@ -6,7 +6,7 @@
 package gt.url.edu.producto;
 
 import gt.url.edu.inventariomaven.Presentacion;
-import com.mycompany.factorybd.FactoryBaseDeDatos;
+import gt.url.edu.factorybd.FactoryBaseDeDatos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
