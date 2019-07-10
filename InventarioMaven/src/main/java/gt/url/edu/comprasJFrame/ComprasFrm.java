@@ -15,12 +15,12 @@ import javax.swing.JTextField;
  *
  * @author chr
  */
-public class ComprarsFrm extends javax.swing.JFrame {
+public class ComprasFrm extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaCompras
      */
-    public ComprarsFrm() {
+    public ComprasFrm() {
         initComponents();
     }
 

@@ -5,12 +5,17 @@
  */
 package gt.url.edu.comprasJFrame;
 
+import gt.url.edu.inventario.InventarioOperacionesBD;
+
 /**
  *
  * @author sys515
  */
-public class ComprasFrmController {
-    public ComprasFrmController(){
-        
+public class ComprasFrmController extends InventarioOperacionesBD{
+    private ComprasFrm view;
+    public ComprasFrmController(ComprasFrm view){
+        this.view=view;
+        this.view.getComboProductos().setModel(new ProxyModelProductos(listaProdcutos()));
     }
+    
 }
