@@ -56,7 +56,7 @@ public class Lote implements Serializable {
     private Boolean disponible;
     @Column(name = "Ganancia")
     private Float ganancia;
-    @Column(name = "PrecioUnitario")
+    @Column(name = "PrecioUnitario")    
     private Float precioUnitario;
     @Column(name = "PrecioTotal")
     private Float precioTotal;

@@ -21,13 +21,13 @@ import javax.persistence.criteria.Root;
  */
 public class LoteJpaController implements Serializable {
 
-    public LoteJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public LoteJpaController(EntityManager em) {
+        this.em = em;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManager em = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return this.em;
     }
 
     public void create(Lote lote) {
@@ -39,7 +39,7 @@ public class LoteJpaController implements Serializable {
             em.getTransaction().commit();
         } finally {
             if (em != null) {
-                em.close();
+               
             }
         }
     }

@@ -36,6 +36,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Proveedor.findByCorreo", query = "SELECT p FROM Proveedor p WHERE p.correo = :correo")})
 public class Proveedor implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -142,7 +143,9 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return nit+", "+nombreV+", "+representante;
+        return id+", "+nit+", "+nombreV+", "+representante;
     }
+
+    
     
 }
