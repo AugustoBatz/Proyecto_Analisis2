@@ -6,7 +6,7 @@
 package com.mycompany.producto;
 
 import com.mycompany.inventariomaven.Presentacion;
-import factorybd.FactoryBaseDeDatos;
+import com.mycompany.factorybd.FactoryBaseDeDatos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

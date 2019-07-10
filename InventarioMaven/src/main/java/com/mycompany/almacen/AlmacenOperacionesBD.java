@@ -22,8 +22,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.main.Main;
-import factorybd.FactoryBaseDeDatos;
-import static factorybd.FactoryBaseDeDatos.getInstancia;
+import com.mycompany.factorybd.FactoryBaseDeDatos;
+import static com.mycompany.factorybd.FactoryBaseDeDatos.getInstancia;
 
 /**
  *

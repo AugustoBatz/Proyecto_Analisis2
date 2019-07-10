@@ -5,21 +5,12 @@
  */
 package com.mycompany.producto;
 
-import com.mycompany.almacen.ModeloProxyJList;
-import com.mycompany.inventariomaven.Categoria;
-import com.mycompany.inventariomaven.Marca;
-import com.mycompany.inventariomaven.Presentacion;
-import com.mycompany.inventariomaven.Producto;
-import com.mycompany.inventariomaven.ProductoJpaController;
-import com.mycompany.inventariomaven.Unidad;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+
+
 
 /**
  *
@@ -29,7 +20,8 @@ public class ProductoController extends ProductoOperacionBD implements  ActionLi
     private ProductoFrm view;
     private List querylist;
     private ArrayList<String> data=new ArrayList<String>();
-    
+    //TextAutoCompleter textAutoCompleter;
+
     public ProductoController(ProductoFrm view){
         this.view=view;
         this.querylist=CaracteristicasDelProducto();
