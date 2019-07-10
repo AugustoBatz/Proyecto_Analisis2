@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
  *
  * @author sys515
  */
-public class ProductoParadetalle implements InterfazLlenarDetalle{
+public class DetallesFactura implements InterfazLlenarDetalle{
 
     private FactoryBaseDeDatos conexion=FactoryBaseDeDatos.getInstancia();
     @Override
@@ -31,6 +31,13 @@ public class ProductoParadetalle implements InterfazLlenarDetalle{
         TypedQuery<Proveedor> query = conexion.getEntityManager().createNamedQuery("Proveedor.findAll", Proveedor.class);
         List<Proveedor> queryList=query.getResultList();
         return queryList;
+    }
+
+    @Override
+    public Proveedor getProveedor(String id) {
+        TypedQuery<Proveedor> query = conexion.getEntityManager().createNamedQuery("Proveedor.findById", Proveedor.class);
+        query.setParameter("id", Integer.valueOf(id));
+        return query.getSingleResult();
     }
 
    

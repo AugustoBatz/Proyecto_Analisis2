@@ -42,6 +42,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "FacturaCompra.findByCantidadProd", query = "SELECT f FROM FacturaCompra f WHERE f.cantidadProd = :cantidadProd")})
 public class FacturaCompra implements Serializable {
 
+   
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -168,9 +169,7 @@ public class FacturaCompra implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.mycompany.inventariomaven.FacturaCompra[ id=" + id + " ]";
-    }
+  
+
     
 }

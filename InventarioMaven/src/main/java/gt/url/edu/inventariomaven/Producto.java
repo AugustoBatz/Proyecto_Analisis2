@@ -37,6 +37,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Producto.findByStockMinimo", query = "SELECT p FROM Producto p WHERE p.stockMinimo = :stockMinimo")})
 public class Producto implements Serializable {
 
+   
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -183,5 +184,7 @@ public class Producto implements Serializable {
     public String toString() {
         return id+", "+codigo+", "+nombre+", "+getMarcaid().getMarca()+", "+getPresentacionid().getPresentacion()+", "+getUnidadid().getUnidad();
     }
+
+ 
     
 }

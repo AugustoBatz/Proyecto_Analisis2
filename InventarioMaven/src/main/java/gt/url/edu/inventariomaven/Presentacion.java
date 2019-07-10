@@ -31,6 +31,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Presentacion.findByPresentacion", query = "SELECT p FROM Presentacion p WHERE p.presentacion = :presentacion")})
 public class Presentacion implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,5 +90,6 @@ public class Presentacion implements Serializable {
     public String toString() {
         return ""+presentacion;
     }
+
     
 }
