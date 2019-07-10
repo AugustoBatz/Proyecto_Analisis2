@@ -5,7 +5,6 @@
  */
 package com.mycompany.almacen;
 
-import com.mycompany.inventariomaven.Categoria;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;

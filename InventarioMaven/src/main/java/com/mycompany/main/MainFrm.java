@@ -144,7 +144,7 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioActionPerformed
-        PruebaConsultaInner pci=new PruebaConsultaInner();
+        
         
         // TODO add your handling code here:
     }//GEN-LAST:event_InventarioActionPerformed
