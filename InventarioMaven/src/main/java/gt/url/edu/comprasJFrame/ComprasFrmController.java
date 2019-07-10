@@ -15,7 +15,7 @@ public class ComprasFrmController extends InventarioOperacionesBD{
     private ComprasFrm view;
     public ComprasFrmController(ComprasFrm view){
         this.view=view;
-        this.view.getComboProductos().setModel(new ProxyModelProductos(listaProdcutos()));
+        this.view.getComboProductos().setModel(new ProxyModelProductos(listProductos()));
     }
     
 }

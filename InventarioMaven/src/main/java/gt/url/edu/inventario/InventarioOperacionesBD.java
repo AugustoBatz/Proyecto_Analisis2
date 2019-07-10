@@ -26,7 +26,7 @@ public class InventarioOperacionesBD {
     private FactoryBaseDeDatos conexion=FactoryBaseDeDatos.getInstancia();
 
    
-    public List listaProdcutos(){
+    public List listProductos(){
         
         TypedQuery<Producto> queryprod = conexion.getEntityManager().createNamedQuery("Producto.findAll", Producto.class);
         List<Producto> listaProductos = queryprod.getResultList();//List es una interfaz

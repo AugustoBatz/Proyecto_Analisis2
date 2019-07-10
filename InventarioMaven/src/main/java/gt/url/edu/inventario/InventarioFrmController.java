@@ -21,7 +21,7 @@ public class InventarioFrmController extends InventarioOperacionesBD {
         this.view = view;
          RenderCellRojo renderer=new RenderCellRojo(0);
         this.view.getTablaInventario().setDefaultRenderer(Object.class, renderer);
-        this.view.getTablaInventario().setModel(new ProxyTableModel(nombreDeColumnas(),listaProdcutos()));
+        this.view.getTablaInventario().setModel(new ProxyTableModel(nombreDeColumnas(),listProductos()));
         
     }
     

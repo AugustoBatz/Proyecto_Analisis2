@@ -181,7 +181,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Nombre: "+nombre+" Codigo: "+codigo+" Marca: "+getMarcaid().getMarca();
+        return id+", "+codigo+", "+nombre+", "+getMarcaid().getMarca()+", "+getPresentacionid().getPresentacion()+", "+getUnidadid().getUnidad();
     }
     
 }
