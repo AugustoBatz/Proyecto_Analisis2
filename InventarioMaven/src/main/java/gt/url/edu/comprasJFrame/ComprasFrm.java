@@ -5,6 +5,7 @@
  */
 package gt.url.edu.comprasJFrame;
 
+import gt.url.edu.main.MainFrm;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -269,6 +270,11 @@ public class ComprasFrm extends javax.swing.JFrame {
         btncomprar.setText("Comprar");
 
         jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -360,6 +366,14 @@ public class ComprasFrm extends javax.swing.JFrame {
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnagregarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+            MainFrm frm=new MainFrm();
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
  
    
