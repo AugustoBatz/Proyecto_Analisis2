@@ -10,7 +10,7 @@ import com.mycompany.inventariomaven.Marca;
 import com.mycompany.inventariomaven.Presentacion;
 import com.mycompany.inventariomaven.Producto;
 import com.mycompany.inventariomaven.Unidad;
-import factorybd.FactoryBaseDeDatos;
+import com.mycompany.factorybd.FactoryBaseDeDatos;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

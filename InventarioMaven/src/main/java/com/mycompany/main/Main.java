@@ -20,7 +20,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.almacen.Almacen;
 import com.mycompany.almacen.ModeloProxyJList;
-import static factorybd.FactoryBaseDeDatos.getInstancia;
+import static com.mycompany.factorybd.FactoryBaseDeDatos.getInstancia;
 
 /**
  *
