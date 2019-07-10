@@ -5,6 +5,9 @@
  */
 package gt.url.edu.comprasJFrame;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author chr
@@ -16,6 +19,30 @@ public class VentanaProveedores extends javax.swing.JFrame {
      */
     public VentanaProveedores() {
         initComponents();
+    }
+
+    public JButton getBtnagregar() {
+        return btnagregar;
+    }
+
+    public JTextField getDireccion() {
+        return direccion;
+    }
+
+    public JTextField getEmpresa() {
+        return empresa;
+    }
+
+    public JTextField getNit() {
+        return nit;
+    }
+
+    public JTextField getRepresentante() {
+        return representante;
+    }
+
+    public JTextField getTelefono() {
+        return telefono;
     }
 
     /**
@@ -35,12 +62,12 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        textRep = new javax.swing.JTextField();
-        textNIT = new javax.swing.JTextField();
-        textTelefono = new javax.swing.JTextField();
-        textDir = new javax.swing.JTextField();
+        btnagregar = new javax.swing.JButton();
+        empresa = new javax.swing.JTextField();
+        representante = new javax.swing.JTextField();
+        nit = new javax.swing.JTextField();
+        telefono = new javax.swing.JTextField();
+        direccion = new javax.swing.JTextField();
 
         jLabel7.setText("jLabel7");
 
@@ -66,17 +93,17 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setText("Direccion");
 
-        jButton1.setText("Agregar");
+        btnagregar.setText("Agregar");
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        empresa.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        textRep.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        representante.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        textNIT.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        nit.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        textTelefono.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        telefono.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        textDir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        direccion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,15 +124,15 @@ public class VentanaProveedores extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(textRep)
-                            .addComponent(textNIT)
-                            .addComponent(textTelefono)
-                            .addComponent(textDir, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
+                            .addComponent(empresa)
+                            .addComponent(representante)
+                            .addComponent(nit)
+                            .addComponent(telefono)
+                            .addComponent(direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(197, 197, 197)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,24 +143,24 @@ public class VentanaProveedores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textRep, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(representante, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textNIT, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -141,9 +168,9 @@ public class VentanaProveedores extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(textDir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -167,7 +194,9 @@ public class VentanaProveedores extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnagregar;
+    private javax.swing.JTextField direccion;
+    private javax.swing.JTextField empresa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -176,10 +205,8 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField textDir;
-    private javax.swing.JTextField textNIT;
-    private javax.swing.JTextField textRep;
-    private javax.swing.JTextField textTelefono;
+    private javax.swing.JTextField nit;
+    private javax.swing.JTextField representante;
+    private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 }
