@@ -16,21 +16,26 @@ import javax.swing.table.TableModel;
  */
 public class ProxyTableModel implements TableModel{
 
-    
+    private List productos;
     private DefaultTableModel realSubject = new DefaultTableModel();
-    
-    public void nombresDeColumnas(List nombres)
+    public ProxyTableModel(List nombres,List productos){
+        nombresDeColumnas(nombres);
+        this.productos=productos;
+        agregarFila();
+    }
+    private void nombresDeColumnas(List nombres)
     {
         for (Object objeto : nombres) {
             realSubject.addColumn(objeto);
+            System.out.println(objeto);
         }
     }
-    public void agregarFila(List nombres)
+    private void agregarFila()
     {
-        Object[] datosFilas = new Object[nombres.size()];
+        Object[] datosFilas = new Object[productos.size()];
         
         int cont = 0;
-        for (Object objeto : nombres) 
+        for (Object objeto : productos) 
         {
             datosFilas[cont] = objeto;
             cont++;

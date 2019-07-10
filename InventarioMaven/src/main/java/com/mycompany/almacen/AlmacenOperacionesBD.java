@@ -33,7 +33,7 @@ public class AlmacenOperacionesBD {
     private List querylist=new ArrayList();
     private FactoryBaseDeDatos conexion= getInstancia();
     
-    public List listas(){
+    public List listasDelAlmacen(){
         
         TypedQuery<Categoria> query_cat = this.conexion.getEntityManager().createNamedQuery("Categoria.findAll", Categoria.class);
         List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz

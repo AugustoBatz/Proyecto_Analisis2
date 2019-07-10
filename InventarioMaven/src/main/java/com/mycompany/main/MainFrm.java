@@ -9,7 +9,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import com.mycompany.almacen.Almacen;
 import com.mycompany.almacen.AlmacenController;
-import com.mycompany.inventario.PruebaConsultaInner;
+import com.mycompany.inventario.InventarioFrm;
+import com.mycompany.inventario.InventarioFrmController;
+import com.mycompany.inventario.InventarioOperacionesBD;
 import com.mycompany.producto.ProductoController;
 import com.mycompany.producto.ProductoFrm;
 
@@ -145,7 +147,18 @@ public class MainFrm extends javax.swing.JFrame {
 
     private void InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioActionPerformed
         
-        
+        InventarioFrm view=new InventarioFrm();
+        new InventarioFrmController(view);
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+        view.pack();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
+        this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_InventarioActionPerformed
 

@@ -34,7 +34,7 @@ public class AlmacenController extends AlmacenOperacionesBD implements ActionLis
     private List querylist = new ArrayList();
 
     public AlmacenController(Almacen view) {
-        this.querylist = listas();
+        this.querylist = listasDelAlmacen();
         this.view = view;
 
         addActionListener();
@@ -53,7 +53,7 @@ public class AlmacenController extends AlmacenOperacionesBD implements ActionLis
     public void setModels() {
 
         querylist.clear();
-        querylist = listas();
+        querylist = listasDelAlmacen();
         view.getLs_categoria().setModel(new ModeloProxyJList((List) querylist.get(0)));
         view.getLs_presentacion().setModel(new ModeloProxyJList((List) querylist.get(1)));
         view.getLs_unidad_medida().setModel(new ModeloProxyJList((List) querylist.get(2)));
