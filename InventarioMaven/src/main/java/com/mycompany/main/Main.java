@@ -20,6 +20,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.almacen.Almacen;
 import com.mycompany.almacen.ModeloProxyJList;
+import static factorybd.FactoryBaseDeDatos.getInstancia;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         MainFrm frm=new MainFrm();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);

@@ -22,6 +22,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.main.Main;
+import factorybd.FactoryBaseDeDatos;
 
 /**
  *
@@ -29,18 +30,16 @@ import com.mycompany.main.Main;
  */
 public class AlmacenOperacionesBD {
     private List querylist=new ArrayList();
-    
+    private FactoryBaseDeDatos conexion;
     public List listas(){
         
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
-        EntityManager em = emf.createEntityManager();//
-        TypedQuery<Categoria> query_cat = em.createNamedQuery("Categoria.findAll", Categoria.class);
+        TypedQuery<Categoria> query_cat = conexion.getEntityManager().createNamedQuery("Categoria.findAll", Categoria.class);
         List<Categoria> listaCategoria = query_cat.getResultList();//List es una interfaz
-        TypedQuery<Presentacion> query_pres = em.createNamedQuery("Presentacion.findAll", Presentacion.class);
+        TypedQuery<Presentacion> query_pres = conexion.getEntityManager().createNamedQuery("Presentacion.findAll", Presentacion.class);
         List<Presentacion> listaPresentacion = query_pres.getResultList();//List es una interfaz
-        TypedQuery<Unidad> query_unidad = em.createNamedQuery("Unidad.findAll", Unidad.class);
+        TypedQuery<Unidad> query_unidad = conexion.getEntityManager().createNamedQuery("Unidad.findAll", Unidad.class);
         List<Unidad> listaUnidad = query_unidad.getResultList();//List es una interfaz
-        TypedQuery<Marca> query_marca = em.createNamedQuery("Marca.findAll", Marca.class);
+        TypedQuery<Marca> query_marca = conexion.getEntityManager().createNamedQuery("Marca.findAll", Marca.class);
         List<Marca> listaMarca = query_marca.getResultList();//List es una interfaz
         //modelo_proxy_jl mc=new modelo_proxy_jl(listaCategoria);
         querylist.add(listaCategoria);
@@ -48,16 +47,15 @@ public class AlmacenOperacionesBD {
         querylist.add(listaUnidad);
         querylist.add(listaMarca);
         System.out.println("Query");
-        em.close();
-        emf.close();
+        conexion.getEntityManager().close();
+       
         return querylist;
     }
      public void create(int tipo,String descripcion){
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("proyecto");        
-        EntityManager em = emf.createEntityManager();//
+    
         
         if(tipo == 1) {
-            CategoriaJpaController categoriaController = new CategoriaJpaController(em);
+            CategoriaJpaController categoriaController = new CategoriaJpaController(conexion.getEntityManager());
             Categoria c = new Categoria();
             
             c.setCategoria(descripcion);
@@ -66,13 +64,13 @@ public class AlmacenOperacionesBD {
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                em.close();
-                emf.close();
+                conexion.getEntityManager().close();
+              
             }
             
         }
         if(tipo == 2) {
-            PresentacionJpaController presetnacioncontroller=new PresentacionJpaController(em);
+            PresentacionJpaController presetnacioncontroller=new PresentacionJpaController(conexion.getEntityManager());
             Presentacion p = new Presentacion();
             
             p.setPresentacion(descripcion);
@@ -81,13 +79,13 @@ public class AlmacenOperacionesBD {
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                em.close();
-                emf.close();
+                conexion.getEntityManager().close();
+               
             }
             
         }
         if(tipo == 3) {
-            UnidadJpaController unidadcontroller=new UnidadJpaController(em);
+            UnidadJpaController unidadcontroller=new UnidadJpaController(conexion.getEntityManager());
             Unidad u = new Unidad();
             u.setUnidad(descripcion);
             try {
@@ -95,13 +93,13 @@ public class AlmacenOperacionesBD {
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                em.close();
-                emf.close();
+                conexion.getEntityManager().close();
+           
             }
             
         }
         if(tipo == 4) {
-            MarcaJpaController marcacontroller=new MarcaJpaController(em);
+            MarcaJpaController marcacontroller=new MarcaJpaController(conexion.getEntityManager());
             Marca m = new Marca();
             m.setMarca(descripcion);
             try {
@@ -109,8 +107,8 @@ public class AlmacenOperacionesBD {
             } catch (Exception ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                em.close();
-                emf.close();
+                conexion.getEntityManager().close();
+                
             }
             
         }
