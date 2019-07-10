@@ -30,11 +30,24 @@ public class InventarioOperacionesBD {
         
         TypedQuery<Producto> queryprod = conexion.getEntityManager().createNamedQuery("Producto.findAll", Producto.class);
         List<Producto> listaProductos = queryprod.getResultList();//List es una interfaz
+        
         for (Object obj:listaProductos) {
             System.out.println(obj);
         }
         return listaProductos;
       
+    }
+    public List nombreDeColumnas(){
+         List<String> nombresDeLasColumnas = new ArrayList<String>();
+        nombresDeLasColumnas.add("Codigo");
+        nombresDeLasColumnas.add("Nombre");
+        nombresDeLasColumnas.add("Marca");
+        nombresDeLasColumnas.add("Presentacion");
+        nombresDeLasColumnas.add("Unidad");
+        nombresDeLasColumnas.add("Categoria");
+        nombresDeLasColumnas.add("Existencia");
+        nombresDeLasColumnas.add("StockMinimo");
+        return nombresDeLasColumnas;
     }
     
 }

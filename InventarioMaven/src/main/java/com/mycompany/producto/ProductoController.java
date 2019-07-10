@@ -29,6 +29,7 @@ public class ProductoController extends ProductoOperacionBD implements  ActionLi
     private ProductoFrm view;
     private List querylist;
     private ArrayList<String> data=new ArrayList<String>();
+    
     public ProductoController(ProductoFrm view){
         this.view=view;
         this.querylist=CaracteristicasDelProducto();
